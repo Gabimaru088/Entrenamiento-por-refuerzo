@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador RL - Laboratorio Creativo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <h1>Laboratorio de IA por Refuerzo</h1>
+        <p>
+          Entrena múltiples agentes para <strong>caminar, saltar y correr</strong> hasta la meta.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button id="toggleConfig" class="secondary">⚙️ Configuración</button>
+        <button id="startBtn">▶️ Iniciar simulación</button>
+        <button id="pauseBtn" class="secondary">⏸️ Pausar</button>
+        <button id="resetBtn" class="secondary">🔄 Reiniciar</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="configPanel" class="panel hidden">
+        <h2>Menú de inicio y configuración</h2>
+        <div class="grid">
+          <label>
+            Episodios de entrenamiento
+            <input id="episodes" type="range" min="50" max="2000" step="50" value="600" />
+            <span id="episodesValue">600</span>
+          </label>
+          <label>
+            Velocidad de simulación (steps/s)
+            <input id="speed" type="range" min="2" max="60" step="1" value="20" />
+            <span id="speedValue">20</span>
+          </label>
+          <label>
+            Exploración ε
+            <input id="epsilon" type="range" min="0.05" max="0.95" step="0.05" value="0.4" />
+            <span id="epsilonValue">0.40</span>
+          </label>
+          <label>
+            Dificultad del terreno
+            <select id="difficulty">
+              <option value="easy">Suave</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hard">Desafiante</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel sim-layout">
+        <div class="canvas-wrap">
+          <canvas id="simCanvas" width="1100" height="420" aria-label="Simulación RL"></canvas>
+        </div>
+        <aside>
+          <h2>IAs disponibles</h2>
+          <div id="agentCards" class="agent-cards"></div>
+          <div class="status-box">
+            <h3>Estado</h3>
+            <p id="statusText">Listo para iniciar.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="agentCardTemplate">
+      <article class="agent-card">
+        <div class="agent-title-row">
+          <span class="swatch"></span>
+          <h3></h3>
+        </div>
+        <p class="agent-desc"></p>
+        <dl>
+          <dt>Episodio:</dt>
+          <dd class="episode">0</dd>
+          <dt>Recompensa:</dt>
+          <dd class="reward">0.00</dd>
+          <dt>Tasa de éxito:</dt>
+          <dd class="success">0%</dd>
+        </dl>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
